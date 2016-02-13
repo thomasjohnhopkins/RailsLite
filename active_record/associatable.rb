@@ -75,7 +75,7 @@ module Associatable
       source_p_key = source_options.primary_key
       source_f_key = source_options.foreign_key
 
-      value = send(through_fk)
+      value = send(through_f_key)
       results = DBConnection.execute(<<-SQL, value)
         SELECT
           #{source_table}.*
@@ -97,19 +97,30 @@ module Associatable
     through_options = self.assoc_options[through_name]
     define_method(name) do
       source_options = through_options.model_class.assoc_options[source_name]
-      value = send(through_options.primary_key)
+
+      through_table = through_options.table_name
+      through_p_key = through_options.primary_key
+      through_f_key = through_options.foreign_key
+
+      source_table = source_options.table_name
+      source_p_key = source_options.primary_key
+      source_f_key = source_options.foreign_key
+
+      value = send(through_p_key)
       results = DBConnection.execute(<<-SQL, value)
         SELECT
-          #{source_options.table_name}.*
+          #{source_table}.*
         FROM
-          #{through_options.table_name}
+          #{through_table}
         JOIN
-          #{source_options.table_name}
-          ON  #{through_options.table_name}.#{source_options.foreign_key} =
-              #{source_options.table_name}.#{source_options.primary_key}
+          #{source_table}
+          ON
+          #{through_table}.#{source_f_key} =
+              #{source_table}.#{source_p_key}
         WHERE
-          #{through_options.table_name}.#{through_options.foreign_key} = ?
+          #{through_table}.#{through_f_key} = ?
       SQL
+      
       source_options.model_class.parse_all(results)
     end
   end

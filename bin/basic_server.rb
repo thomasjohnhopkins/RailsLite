@@ -1,6 +1,6 @@
 require 'rack'
 
-application = Proc.new do |environment|
+app = Proc.new do |environment|
   request = Rack::Request.new(environment)
   response = Rack::Response.new
   resquest['Content-Type'] = "text/text"
@@ -9,7 +9,7 @@ application = Proc.new do |environment|
 end
 
 Rack::Server.start(
-  application: application,
+  app: app,
   Port: 3000
 )
 

@@ -1,0 +1,24 @@
+<div class="navigation">
+	<a href="/"><div class="logo">
+		Book Tracker
+	</div></a>
+		<ul>
+			<a href="/books"><li>Index</li></a>
+
+	<% if current_user %>
+		<li><form action="/session" method="post">
+			<input type="hidden" name="_method" value="delete">
+			<input type="hidden" name="security" value="<%= form_authenticity_token %>">
+			<input type="submit" class="logout" value="Logout (DESTROY session)">
+		</form></li>
+	<% else %>
+			<a href="/session/new"><li>Sign In (NEW session)</li></a>
+			<a href="/authors/new"><li>Sign Up (NEW user)</li></a>
+	<% end %>
+		</ul>
+</div>
+
+<div class="title">
+  <h1>Welcome to Book Tracker</h1>
+  <h2>A RESTful Web App built on a custom Rails inspired Platform</h2>
+</div>

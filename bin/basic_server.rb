@@ -1,16 +1,20 @@
 require 'rack'
 
+router = Router.new
+router.draw do
+  get Regexp.new("^/?$"), RootController, :root
+end
+
 app = Proc.new do |environment|
   request = Rack::Request.new(environment)
-  response = Rack::Response.new
-  resquest['Content-Type'] = "text/text"
-  response.write(request.path)
-  response.finish
+  res = Rack::Response.new
+  router.run(req, res)
+  res.finish
 end
 
 Rack::Server.start(
-  app: app,
-  Port: 3000
+ app: app,
+ Port: 3000
 )
 
 # http://www.ruby-doc.org/stdlib-2.0/libdoc/webrick/rdoc/WEBrick.html

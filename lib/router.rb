@@ -1,4 +1,4 @@
-require_relative './route_helpers'
+require_relative 'route_helpers'
 
 class Route
   attr_reader :pattern, :http_method, :controller_class, :action_name
@@ -67,13 +67,13 @@ class Route
 
       RouteHelpers.send(:define_method, path_name) do |*args|
         id = args.first.to_s
-        if path.include?(':id') && !id.nil?
-          path.gsub!(':id', id)
-        end
+          if path.include?(':id') && !id.nil?
+            path.gsub!(':id', id)
+          end
         path
       end
     end
-  end
+
 end
 
 

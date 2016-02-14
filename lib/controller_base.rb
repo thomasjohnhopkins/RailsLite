@@ -69,6 +69,12 @@ class ControllerBase
     @session ||= Session.new(@request)
   end
 
+  def current_user
+    @current_user ||= Author.where({
+      session_token: session["session_token"]
+    }).first
+  end
+
   # router calls action_name
   def invoke_action(name)
     self.send(name)

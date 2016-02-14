@@ -1,0 +1,15 @@
+<link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+<div class="title">
+<pre><%= flash["flash now"] if flash["flash now"] %></pre>
+<pre><%= flash["flash next"] if flash["flash next"] %></pre>
+<h1>Create an account</h1>
+
+<form action="/humans" method="POST">
+  <input type="hidden" name="security" value="<%= form_authenticity_token %>">
+  <label>What's your name:
+    <input type="text" class="form" name="author[name]">
+  </label>
+  <br>
+  <input type="submit" class='new' value="CREATE account">
+</form>
+</div>

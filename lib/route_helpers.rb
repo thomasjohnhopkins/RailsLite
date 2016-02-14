@@ -7,9 +7,11 @@ module RouteHelpers
     form = "<form action='#{ path }' method='post'>"
 
     if options[:method]
-      form += "<input type='hidden' name='_method' value='#{ options[:method] }'>"
+      form += "<input type='hidden'
+        name='_method'
+        value='#{ options[:method] }'>"
     end
-    
+
     form += "<input type='submit' value='#{ title }'>"
     form += "</form>"
     form

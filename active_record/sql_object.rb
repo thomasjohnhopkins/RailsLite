@@ -1,8 +1,8 @@
 require 'active_support/inflector'
 
-require_relative './connection'
-require_relative './associatable'
-require_relative './searchable'
+require_relative 'db_connection'
+require_relative 'associatable'
+require_relative 'searchable'
 
 class SQLObject
   extend Searchable
@@ -83,7 +83,7 @@ class SQLObject
       end
       send("#{attr_name}=", attr_value)
     end
-    end
+
   end
 
   def attributes
@@ -141,4 +141,5 @@ class SQLObject
         id = ?
     SQL
   end
+
 end

@@ -1,4 +1,4 @@
-require_relative '../models/author'
+require_relative '../models/author.rb'
 
 class AuthorsController < ControllerBase
   def new

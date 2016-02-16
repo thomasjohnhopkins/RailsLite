@@ -4,15 +4,16 @@ DROP TABLE IF EXISTS books;
 CREATE TABLE authors (
   id INTEGER PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
-  session_token VARCHAR(255),
+  session_token VARCHAR(255)
 
-  FOREIGN KEY(author_id) REFERENCES authors(id)
 );
 
 CREATE TABLE books (
   id INTEGER PRIMARY KEY,
   title VARCHAR(255) NOT NULL,
-  author_id INTEGER
+  author_id INTEGER,
+
+  FOREIGN KEY(author_id) REFERENCES authors(id)
 );
 
 

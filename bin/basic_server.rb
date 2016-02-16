@@ -5,8 +5,8 @@ require_relative '../lib/router.rb'
 require_relative '../controllers/root_controller.rb'
 # require_relative '../controllers/books_controller.rb'
 # require_relative '../controllers/authors_controller.rb'
-# require_relative '../controllers/sessions_controller.rb'
-# require_relative '../active_record/db_connection.rb'
+require_relative '../controllers/sessions_controller.rb'
+require_relative '../active_record/db_connection.rb'
 #
 # router = Router.new
 # router.draw do
@@ -61,6 +61,7 @@ router = Router.new
 router.draw do
   get Regexp.new("^/books$"), Books2Controller, :index
   get Regexp.new("^/?$"), RootController, :root
+  get Regexp.new("^/session/new/?$"), SessionsController, :new
   # get Regexp.new("^/cats/(?<cat_id>\\d+)/statuses$"), StatusesController, :index
 end
 

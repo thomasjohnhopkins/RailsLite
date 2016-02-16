@@ -19,12 +19,13 @@ class DBConnection
   end
 
   def self.reset
-    # commands = [
-    #   "rm '#{BOOKS_DB_FILE}'",
-    #   "book '#{BOOKS_SQL_FILE}' | sqlite3 '#{BOOKS_DB_FILE}'"
-    # ]
-    #
-    # commands.each { |command| `#{command}` }
+    commands = [
+      "rm '#{BOOKS_DB_FILE}'",
+      "cat '#{BOOKS_SQL_FILE}' | sqlite3 '#{BOOKS_DB_FILE}'"
+    ]
+
+    commands.each { |command| `#{command}` }
+
     DBConnection.open(BOOKS_DB_FILE)
   end
 

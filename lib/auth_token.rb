@@ -1,7 +1,7 @@
 require 'json'
 require 'webrick'
 require 'securerandom'
-require_relative './flash'
+require_relative './flash.rb'
 
 class AuthToken
   attr_reader :security

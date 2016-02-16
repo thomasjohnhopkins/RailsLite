@@ -1,7 +1,9 @@
 require 'active_support'
 require 'active_support/core_ext'
 require 'erb'
-require_relative './session'
+require_relative './session.rb'
+require_relative './auth_token.rb'
+# require_relative '../models/author.rb'
 
 class ControllerBase
   attr_reader :request, :response, :params
@@ -53,7 +55,7 @@ class ControllerBase
     dir_path = File.dirname(__FILE__)
     template_fname = File.join(
       dir_path, "..",
-      "views", self.class.name.underscore, "#{template_name}.html.erb"
+      "views", template_name.underscore, "#{template_name}.html.erb"
     )
 
     template_code = File.read(template_fname)
@@ -69,11 +71,15 @@ class ControllerBase
     @session ||= Session.new(@request)
   end
 
-  def current_user
-    @current_user ||= Author.where({
-      session_token: session["session_token"]
-    }).first
+  def form_authenticity_token
+    auth_token.security
   end
+
+  # def current_user
+  #   @current_user ||= Author.where({
+  #     session_token: session["session_token"]
+  #   }).first
+  # end
 
   # router calls action_name
   def invoke_action(name)

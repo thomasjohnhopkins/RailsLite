@@ -3,7 +3,7 @@ require_relative '../models/author.rb'
 class AuthorsController < ControllerBase
   def new
     return redirect_to "/" if current_user
-    @author = User.new
+    @author = Author.new
     render "new"
   end
 

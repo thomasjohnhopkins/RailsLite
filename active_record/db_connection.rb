@@ -19,12 +19,12 @@ class DBConnection
   end
 
   def self.reset
-    commands = [
-      "rm '#{BOOKS_DB_FILE}'",
-      "book '#{BOOKS_SQL_FILE}' | sqlite3 '#{BOOKS_DB_FILE}'"
-    ]
-
-    commands.each { |command| `#{command}` }
+    # commands = [
+    #   "rm '#{BOOKS_DB_FILE}'",
+    #   "book '#{BOOKS_SQL_FILE}' | sqlite3 '#{BOOKS_DB_FILE}'"
+    # ]
+    #
+    # commands.each { |command| `#{command}` }
     DBConnection.open(BOOKS_DB_FILE)
   end
 
@@ -49,6 +49,9 @@ class DBConnection
   end
 
   private
+
+  def initialize(db_file_name)
+  end
 
   def self.print_query(query, *interpolation_args)
     return unless PRINT_QUERIES

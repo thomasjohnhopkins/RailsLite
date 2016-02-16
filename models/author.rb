@@ -1,5 +1,5 @@
-require_relative '../active_record/sql_object.rb'
-require_relative 'book'
+require_relative '../active_record/sql_object'
+require_relative './book'
 
 class Author < SQLObject
   self.finalize!

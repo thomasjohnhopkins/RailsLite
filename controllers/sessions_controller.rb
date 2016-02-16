@@ -1,4 +1,5 @@
 require_relative '../models/author.rb'
+
 require 'securerandom'
 
 class SessionsController < ControllerBase

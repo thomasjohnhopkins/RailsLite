@@ -36,6 +36,6 @@ class Flash
   end
 
   def store_flash(response)
-    ßresponse.set_cookie("_rails_lite_app_flash", @data)
+    response.set_cookie("_rails_lite_app_flash", @data)
   end
 end

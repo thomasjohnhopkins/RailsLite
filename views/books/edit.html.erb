@@ -24,17 +24,22 @@
 </div>
 
 <div class="content">
-<pre><%= flash["flash now"] if flash["flash now"] %></pre>
-<pre><%= flash["flash next"] if flash["flash next"] %></pre>
-<h1>Log in</h1>
-<form action="/session" method="POST">
-  <input type="hidden" name="security" value="<%= form_authenticity_token %>">
-  <label>Enter your name:
-    <input type="text" class="form" name="author[name]">
-  </label>
-  <br>
-  <input type="submit" class="new" value="Sign In">
-</form>
+  <pre><%= flash["flash now"] if flash["flash now"] %></pre>
+  <pre><%= flash["flash next"] if flash["flash next"] %></pre>
+
+  <h1>Edit your Book!</h1>
+
+  <form action="/books/<%= @book.id %>" method="post">
+    <input type="hidden" name="_method" value="PUT">
+    <input type="hidden" name="security" value="<%= form_authenticity_token %>">
+    <label>Edit the title of your book:
+      <input type="text" class="form" name="book[title]"
+      value="<%= @book.title %>">
+    </label>
+    <br>
+    <input type="submit" class='new' value="UPDATE book">
+  </form>
+
 </div>
 
 <style>
@@ -105,8 +110,7 @@
   }
   button:hover {
     box-shadow: 1px 1px 1px black;
-		background-color: #fff;
-		color: #333;
+    background-color: #683C0B;
   }
 
   .content {
@@ -189,7 +193,6 @@
 		background-color: #fff;
 		color: #333;
     box-shadow: 1px 1px 1px black;
-    /*margin: 6px;*/
   }
 
 	.group:after {

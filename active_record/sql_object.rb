@@ -61,6 +61,7 @@ class SQLObject
   end
 
   def self.find(id)
+    id = id.to_i
     results = DBConnection.execute(<<-SQL, id)
       SELECT
         #{table_name}.*
@@ -74,7 +75,7 @@ class SQLObject
   end
 
   def initialize(params = {})
-    params.each do |attr_name, value|
+    params.each do |attr_name, attr_value|
       # keys to symbols
       attr_name = attr_name.to_sym
 
@@ -131,6 +132,10 @@ class SQLObject
 
   def save
     id.nil? ? insert : update
+  end
+
+  def set(params = {})
+    params.each { |key, value| attributes[key] = value }
   end
 
   def destroy

@@ -1,23 +1,178 @@
-<div class="navigation">
-	<a href="/"><div class="logo">
-		Book Tracker
-	</div></a>
-		<ul>
+<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+
+<div class="header">
+		<div class="logo"><a href="/">Book Tracker</a></div>
+
+		<ul class="header-list group">
+
 			<a href="/books"><li>Index</li></a>
+			<a href="/books/new"><li>Add a Book</li></a>
+
 
 	<% if current_user %>
 		<li><form action="/session" method="post">
-			<input type="hidden" name="_method" value="delete">
+			<input type="hidden" name="_method" value="DELETE">
 			<input type="hidden" name="security" value="<%= form_authenticity_token %>">
 			<input type="submit" class="logout" value="Logout (DESTROY session)">
 		</form></li>
 	<% else %>
 			<a href="/session/new"><li>Sign In (NEW session)</li></a>
-			<a href="/author/new"><li>Sign Up (NEW author)</li></a>
+			<a href="/authors/new"><li>Sign Up (NEW author)</li></a>
 	<% end %>
 		</ul>
 </div>
 <div class="title">
   <h1>Welcome to Book Tracker</h1>
-  <h2>A RESTful Web App built on a custom Rails inspired Platform</h2>
+  <h2>A RESTful Web App built on a custom MVC framework</h2>
 </div>
+
+<style>
+
+  html, body {
+    padding: 0px;
+    margin: 0px;
+  }
+
+  h1, h2, h3 {
+    line-height: 1;
+    margin: 10px;
+    font-family: 'Oxygen', sans-serif;
+  }
+
+  p, a {
+    line-height: 1;
+    margin: 10px;
+    font-family: 'Oxygen', serif;
+  }
+
+	pre {
+		font-size: 1.3em;
+	}
+
+  input.form {
+    font-size: 0.7em;
+    padding: 3px 5px;
+    border-radius: 5px;
+    width: 250px;
+  }
+
+  input.new {
+    margin: 20px 500px;
+    background-color: #C38E4A;
+    font-size: 1.4em;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    text-align: right;
+  }
+  input.new:hover {
+    box-shadow: 1px 1px 1px black;
+    background-color: #683C0B;
+  }
+  button {
+    background-color: #C38E4A;
+    font-size: 1.8em;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+		margin: 20px;
+  }
+  button:hover {
+    box-shadow: 1px 1px 1px black;
+    background-color: #683C0B;
+  }
+
+  .title {
+		border: 3px solid #eee;
+		padding: 20px;
+		border-radius: 10px;
+		max-width: 700px;
+		margin: 70px auto;
+    box-sizing: border-box;
+    height: 70vh;
+		overflow-y: scroll;
+    background: url('https://pixabay.com/get/e834b50820f5043ed1534705fb0938c9bd22ffd41db4144793f6c678a7/library-1147815_1920.jpg') no-repeat bottom right;
+  }
+
+	.title h1 {
+		font-size: 3em;
+		color: #eee;
+    line-height: 1.5;
+		background: #333;
+		text-align: center;
+	}
+
+	.title h2 {
+		color: #eee;
+		background: #333;
+		text-align: center;
+		padding: 10px;
+	}
+
+  .header {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 3;
+    background: #ccc;
+    height: 50px;
+  }
+	.logo {
+		font-family: 'Oxygen', sans-serif;
+		font-size: 2em;
+		padding: 10px 40px;
+		float: left;
+		cursor: pointer;
+		margin-right: 100px;
+	}
+
+	.header button {
+		margin: -9px -15px;
+		font-size: 0.8em;
+	}
+
+	.header ul {
+		float: right;
+		margin-right: 25px;
+	}
+	.header li {
+		float: right;
+		list-style-type: none;
+		font-size: 1.3em;
+		padding: 0px 10px;
+	}
+	.header a {
+		color: #333;
+	}
+	.header a:hover {
+		color: white;
+	}
+
+  .logout {
+    font-size: 0.8em;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    padding: 8px 10px;
+    cursor: pointer;
+    margin: -8px 0px;
+    background-color: #C38E4A;
+  }
+  .logout:hover {
+    background-color: #683C0B;
+    box-shadow: 1px 1px 1px black;
+    /*margin: 6px;*/
+  }
+
+	.group:after {
+		content: "";
+		clear: both;
+		display: block;
+	}
+
+</style>

@@ -1,4 +1,5 @@
 require 'rack'
+require 'byebug'
 
 require_relative '../lib/controller_base.rb'
 require_relative '../lib/router.rb'
@@ -72,6 +73,7 @@ router.draw do
 end
 
 app = Proc.new do |env|
+  byebug
   req = Rack::Request.new(env)
   res = Rack::Response.new
   router.run(req, res)

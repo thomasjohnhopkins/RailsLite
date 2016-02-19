@@ -8,11 +8,17 @@ I decided to recreate the basic functionality that it provides.
 - Built architectural pattern to organize the database.  
 - Includes a custom ControllerBase class to provide controller inheritance.
 - Implements custom Route and Router classes to pass HTTP requests to the controllers and responses to the views.
-- Stores information in cookies to keep information on current user.
+- Stores data in cookies to keep information on current user.
 - Capable of rendering HTML/ERB templates.
 - Use CSRF to evaluate whether a form is valid.
 
+<!-- ## Getting Started
 
-## Languages
-- Ruby
-- HTML/ERB
+Instructions to come -->
+
+## Technologies
+* Ruby
+* Rack
+* ERB
+* SQLite3
+* Dynamic Archive (Custom ORM)

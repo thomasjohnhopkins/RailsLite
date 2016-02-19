@@ -21,4 +21,4 @@ Instructions to come -->
 * Rack
 * ERB
 * SQLite3
-* Dynamic Archive (Custom ORM)
+* Agile Record (Custom ORM)

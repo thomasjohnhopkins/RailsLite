@@ -6,7 +6,7 @@ require_relative '../controllers/root_controller.rb'
 require_relative '../controllers/books_controller.rb'
 require_relative '../controllers/authors_controller.rb'
 require_relative '../controllers/sessions_controller.rb'
-require_relative '../active_record/db_connection.rb'
+require_relative '../agile_record/db_connection.rb'
 
 
 router = Router.new

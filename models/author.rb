@@ -1,4 +1,4 @@
-require_relative '../active_record/sql_object.rb'
+require_relative '../agile_record/sql_object.rb'
 require_relative './book.rb'
 
 class Author < SQLObject

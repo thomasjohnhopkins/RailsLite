@@ -1,5 +1,5 @@
 require_relative 'route_helpers'
-
+require 'byebug'
 
 class Route
   attr_reader :pattern, :http_method, :controller_class, :action_name
@@ -9,7 +9,7 @@ class Route
     @http_method = http_method
     @controller_class = controller_class
     @action_name = action_name
-    add_route_helpers
+    # add_route_helpers
   end
 
   # check if route params match the request params
@@ -34,22 +34,22 @@ class Route
 
   private
 
-    def add_route_helpers
-      case action_name
-      when :edit
-        name = "edit_#{ class_name_singular }"
-        add_path_method(name, "/#{ class_name_plural }/:id/edit")
-      when :new
-        name = "new_#{ class_name_singular }"
-        add_path_method(name, "/#{ class_name_plural }/new")
-      when :show, :destroy, :update
-        name = "#{ class_name_singular }"
-        add_path_method(name, "/#{ class_name_plural }/:id")
-      when :index, :create
-        name = "#{ class_name_plural }"
-        add_path_method(name, "/#{ name }")
-      end
-    end
+    # def add_route_helpers
+    #   case action_name
+    #   when :edit
+    #     name = "edit_#{ class_name_singular }"
+    #     add_path_method(name, "/#{ class_name_plural }/:id/edit")
+    #   when :new
+    #     name = "new_#{ class_name_singular }"
+    #     add_path_method(name, "/#{ class_name_plural }/new")
+    #   when :show, :destroy, :update
+    #     name = "#{ class_name_singular }"
+    #     add_path_method(name, "/#{ class_name_plural }/:id")
+    #   when :index, :create
+    #     name = "#{ class_name_plural }"
+    #     add_path_method(name, "/#{ name }")
+    #   end
+    # end
 
     def class_name
       controller_class.to_s.underscore.gsub('_controller', '')
@@ -117,6 +117,8 @@ class Router
 
     if matching_route.nil?
       response.status = 404
+
+      response.write("Sorry! The requested URL #{request.path} was not not found!")
     else
       matching_route.run(request, response)
     end

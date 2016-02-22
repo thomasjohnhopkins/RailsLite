@@ -18,6 +18,11 @@ class BooksController < ControllerBase
     end
   end
 
+  def show
+    @book = Book.find(params["id"])
+    render "show"
+  end
+
   def index
     @books = Book.all
     render "index"
@@ -30,7 +35,8 @@ class BooksController < ControllerBase
   end
 
   def update
-    @book = Book.find(params[:id])
+
+    @book = Book.find(params["id"])
     return redirect_to "/books" unless current_user && current_user.id == @book.author_id
     @book.set(title: params["book"]["title"])
     if @book.save

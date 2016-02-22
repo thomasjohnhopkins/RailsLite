@@ -20,7 +20,8 @@ router.draw do
   get Regexp.new("^/books/new/?$"), BooksController, :new
   post Regexp.new("^/books$"), BooksController, :create
   get Regexp.new("^/book/(?<id>\\d+)/edit/?$"), BooksController, :edit
-  put Regexp.new("^/books/(?<id>\\d+)"), BooksController, :update
+  post Regexp.new("^/books/(?<id>\\d+)"), BooksController, :update
+  get Regexp.new("^/books/(?<id>\\d+)"), BooksController, :show
 end
 
 app = Proc.new do |env|

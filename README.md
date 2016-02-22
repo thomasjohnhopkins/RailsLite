@@ -29,7 +29,7 @@ I decided to recreate the basic functionality that it provides.
 # app/models/user.rb
 
 require_relative '../agile_record/sql_object.rb'
-require_relative './author.rb'
+require_relative './book.rb'
 
 class User < SQLObject
 
@@ -61,8 +61,6 @@ end
 # app/controllers/users_controller.rb
 
 require_relative '../models/user.rb'
-
-class AuthorsController < ControllerBase
 
 class UsersController < ControllerBase
   def index

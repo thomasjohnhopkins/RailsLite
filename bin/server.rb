@@ -14,7 +14,8 @@ router.draw do
   get Regexp.new("^/books$"), BooksController, :index
   get Regexp.new("^/?$"), RootController, :root
   get Regexp.new("^/session/new/?$"), SessionsController, :new
-  delete Regexp.new("^/session"), SessionsController, :destroy
+  post Regexp.new("^/sessions"), SessionsController, :create
+  post Regexp.new("^/session"), SessionsController, :destroy
   get Regexp.new("^/authors/new/?$"), AuthorsController, :new
   post Regexp.new("^/authors$"), AuthorsController, :create
   get Regexp.new("^/books/new/?$"), BooksController, :new

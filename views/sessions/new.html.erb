@@ -6,20 +6,19 @@
 
 		<ul class="header-list group">
 
-			<a href="/books"><li>Index</li></a>
+			<% if current_user %>
+				<li><form action="/session" method="post">
+					<input type="hidden" name="_method" value="DELETE">
+					<input type="hidden" name="security" value="<%= form_authenticity_token %>">
+					<input type="submit" class="logout" value="Logout (DESTROY session)">
+				</form></li>
+			<% else %>
+					<a href="/session/new"><li>Sign In (NEW session)</li></a>
+					<a href="/authors/new"><li>Sign Up (NEW author)</li></a>
+			<% end %>
+
 			<a href="/books/new"><li>Add a Book</li></a>
-
-
-	<% if current_user %>
-		<li><form action="/session" method="post">
-			<input type="hidden" name="_method" value="DELETE">
-			<input type="hidden" name="security" value="<%= form_authenticity_token %>">
-			<input type="submit" class="logout" value="Logout (DESTROY session)">
-		</form></li>
-	<% else %>
-			<a href="/session/new"><li>Sign In (NEW session)</li></a>
-			<a href="/authors/new"><li>Sign Up (NEW author)</li></a>
-	<% end %>
+			<a href="/books"><li>Index</li></a>
 		</ul>
 </div>
 
@@ -27,7 +26,7 @@
 <pre><%= flash["flash now"] if flash["flash now"] %></pre>
 <pre><%= flash["flash next"] if flash["flash next"] %></pre>
 <h1>Log in</h1>
-<form action="/session" method="POST">
+<form action="/sessions" method="POST">
   <input type="hidden" name="security" value="<%= form_authenticity_token %>">
   <label>Enter your name:
     <input type="text" class="form" name="author[name]">

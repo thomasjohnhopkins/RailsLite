@@ -29,6 +29,6 @@ class SessionsController < ControllerBase
     current_user.save
     current_user = nil
     session["session_token"] = nil
-    redirect_to("/books")
+    redirect_to("/")
   end
 end

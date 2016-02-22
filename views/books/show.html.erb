@@ -5,20 +5,19 @@
 
 		<ul class="header-list group">
 
-			<a href="/books"><li>Index</li></a>
+			<% if current_user %>
+				<li><form action="/session" method="post">
+					<input type="hidden" name="_method" value="DELETE">
+					<input type="hidden" name="security" value="<%= form_authenticity_token %>">
+					<input type="submit" class="logout" value="Logout (DESTROY session)">
+				</form></li>
+			<% else %>
+					<a href="/session/new"><li>Sign In (NEW session)</li></a>
+					<a href="/authors/new"><li>Sign Up (NEW author)</li></a>
+			<% end %>
+
 			<a href="/books/new"><li>Add a Book</li></a>
-
-
-	<% if current_user %>
-		<li><form action="/session" method="post">
-			<input type="hidden" name="_method" value="DELETE">
-			<input type="hidden" name="security" value="<%= form_authenticity_token %>">
-			<input type="submit" class="logout" value="Logout (DESTROY session)">
-		</form></li>
-	<% else %>
-			<a href="/session/new"><li>Sign In (NEW session)</li></a>
-			<a href="/authors/new"><li>Sign Up (NEW author)</li></a>
-	<% end %>
+			<a href="/books"><li>Index</li></a>
 		</ul>
 </div>
 
@@ -29,7 +28,7 @@
 
   <h1><%= @book.title %></h1>
 
-  <h3><%= @book.author.name %></h3>
+  <h3>Written By: <%= @book.author.name %></h3>
 
 </div>
 
@@ -42,7 +41,7 @@
 
   h1, h2, h3 {
     line-height: 1;
-    margin: 10px;
+    margin: 50px;
     font-family: 'Oxygen', sans-serif;
   }
 
@@ -54,6 +53,10 @@
 
 	pre {
 		font-size: 1.3em;
+	}
+
+	div.content {
+		background: url('https://pixabay.com/get/e837b10b28f6083ed1534705fb0938c9bd22ffd41db4174092f3c87caf/books-1204029_1920.jpg');
 	}
 
   input.form {
@@ -123,7 +126,7 @@
 		text-align: center;
 	}
 
-	.content h2 {
+	.content h3 {
 		color: #eee;
 		background: #333;
 		text-align: center;
